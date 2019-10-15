@@ -29,18 +29,26 @@ pcs = 4
 iter = [1, 5, 10, 25, 50, 100, 300, 512]
 
 for i in iter:
-    #imgR = normalize(imageCompression(r,iter[i]))
-    #imgG = normalize(imageCompression(g,iter[i]))
-    #imgB = normalize(imageCompression(b,iter[i]))
+    # imgR = normalize(imageCompression(r,i))
+    # imgG = normalize(imageCompression(g,i))
+    # imgB = normalize(imageCompression(b,i))
     imgR = imageCompression(r,i)
     imgG = imageCompression(g,i)
     imgB = imageCompression(b,i)
     print(i)
     img = lena
-    img[:,:,:] = np.zeros((512, 512, 3), dtype=float)
+    img = np.zeros((512, 512, 3), dtype=float)
     img[:,:,0] = imgR
     img[:,:,1] = imgG
     img[:,:,2] = imgB
-    plt.imshow(img)
-    #plt.imsave("lena" + str(iter[i]) + ".png", img)
-plt.show()
+    for x in range(512):
+        for y in range(512):
+            for z in range(3):
+                if img[x,y,z] > 1:
+                    img[x,y,z] = 1
+                elif img[x,y,z] < 0:
+                    img[x,y,z] = 0
+    plt.imsave("lena" + str(i) + ".png", img)
+
+if (np.all(lena, img)):
+    print("wat")

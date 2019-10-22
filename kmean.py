@@ -15,7 +15,11 @@ def kmean(k, data, count, iter):
         meanCount = np.zeros(k)
         for i in range(count):
             for n in range(k):
-                distance[n] = np.sqrt((centroid[n,0] - data[i,0])**2 + (centroid[n,1] - data[i,1])**2)
+                tmp = 0
+                print(len(data[0,:]))
+                for feature in range(len(data[0,:])):
+                    tmp += (centroid[n,feature] - data[i,feature])**2
+                distance[n] = np.sqrt(tmp)
             shortestCluster[i] = np.argmin(distance)
             for n in range(k):
                 if shortestCluster[i] == n:

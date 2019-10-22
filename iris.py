@@ -6,10 +6,10 @@ import kmean
 
 clusters = 3
 count = 150
-iterations = 50
+iterations = 100
 
 iris = sklearn.datasets.load_iris()
-data = iris.data[:,:2]
+data = iris.data[:,:4]
 colors = cm.hsv(np.linspace(0,1,clusters+1))
 flag, centroid = kmean.kmean(clusters,data,count, iterations)
 for i in range(count):

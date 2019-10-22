@@ -4,8 +4,8 @@ import random
 import matplotlib.cm as cm
 from sklearn.datasets import make_blobs
 
-clusters = 4
-count = 3000
+clusters = 10
+count = 2000
 iterations = 50
 
 def kmean(k, data, count, iter):
@@ -20,8 +20,9 @@ def kmean(k, data, count, iter):
     shortestCluster = np.zeros(count)
     # print(distance)
     for x in range(iter):
-        # meanDistances = np.zeros(shape=data.shape())
-        # meanCount = np.zeros(k)
+        meanX = np.zeros(k)
+        meanY = np.zeros(k)
+        meanCount = np.zeros(k)
         for i in range(count):
             for n in range(k):
                 distance[n] = np.sqrt((centroid[n,0] - data[i,0])**2 + (centroid[n,1] - data[i,1])**2)
@@ -32,7 +33,7 @@ def kmean(k, data, count, iter):
                 if shortestCluster[i] == n:
                     # meanCount[n] += 1
                     flag[i] = n
-                centroid[n] = np.mean(data[shortestCluster == n], axis=0)
+
             # for n in range(k):
             #     centroid[n] = meanDistances[n] / meanCount[n]
         if x == 0:
@@ -42,6 +43,17 @@ def kmean(k, data, count, iter):
             for i in range(k):
                 plt.scatter(centroid[i,0], centroid[i,1], color="black")
             plt.show()
+        for i in range(count):
+            for n in range(k):
+                if shortestCluster[i] == n:
+                    meanX[n] += data[i, 0]
+                    meanY[n] += data[i, 1]
+                    meanCount[n] += 1
+                    # print(np.mean(data[n]))
+                    # centroid[n,] = np.mean(data[n,], axis=0)
+        for n in range(k):
+            centroid[n,0] = meanX[n]/meanCount[n]
+            centroid[n,1] = meanY[n]/meanCount[n]
     return flag, centroid
 
 features, target = make_blobs(n_samples=count,

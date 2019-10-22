@@ -17,9 +17,6 @@ def imageCompression(image, comp = 100):
     reconImg = np.absolute(recon)
     return reconImg
 
-def normalize(x):
-    return np.array((x - np.min(x)) / (np.max(x) - np.min(x)))
-
 lena = plt.imread('lena.png')
 r = lena[:,:,0]
 g = lena[:,:,1]

@@ -29,9 +29,6 @@ pcs = 4
 iter = [1, 5, 10, 25, 50, 100, 300, 512]
 
 for i in iter:
-    # imgR = normalize(imageCompression(r,i))
-    # imgG = normalize(imageCompression(g,i))
-    # imgB = normalize(imageCompression(b,i))
     imgR = imageCompression(r,i)
     imgG = imageCompression(g,i)
     imgB = imageCompression(b,i)
@@ -49,6 +46,3 @@ for i in iter:
                 elif img[x,y,z] < 0:
                     img[x,y,z] = 0
     plt.imsave("lena" + str(i) + ".png", img)
-
-if (np.all(lena, img)):
-    print("wat")

@@ -1,1 +1,4 @@
 lena*
+*.png
+.idea*
+__*

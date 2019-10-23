@@ -16,7 +16,6 @@ def kmean(k, data, count, iter):
         for i in range(count):
             for n in range(k):
                 tmp = 0
-                print(len(data[0,:]))
                 for feature in range(len(data[0,:])):
                     tmp += (centroid[n,feature] - data[i,feature])**2
                 distance[n] = np.sqrt(tmp)

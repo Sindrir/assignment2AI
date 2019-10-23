@@ -4,7 +4,7 @@ import sklearn.datasets
 import matplotlib.pyplot as plt
 import kmean
 
-def run(clusters, count, iterations, features=4):
+def run(clusters, count, iterations, features):
     iris = sklearn.datasets.load_iris()
     data = iris.data[:,:features]
     colors = cm.hsv(np.linspace(0,1,clusters+1))
